@@ -1,0 +1,49 @@
+/**
+ * Javascript Notify 1.0 Sass
+ * https://github.com/i07/Moox-Notifications
+ *
+ * A javascript implementation for showing non intrusive notifications
+ *
+ * Copyright 2015; Marc Donkers (marc@i07.eu)
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+/* line 28, moox.notifications.sass */
+.moox_notify-area {
+  position: absolute;
+  font-family: Tahoma;
+  font-size: 11px;
+  width: 430px;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  border: 1px solid #666;
+  padding: 6px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-color: #fff;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(25%, #fcfcfc), color-stop(50%, #eeeeee), color-stop(100%, #ececec));
+  background: -webkit-linear-gradient(top, #ffffff 0%, #fcfcfc 25%, #eeeeee 50%, #ececec 100%);
+  background: -moz-linear-gradient(top, #ffffff 0%, #fcfcfc 25%, #eeeeee 50%, #ececec 100%);
+  background: -o-linear-gradient(top, #ffffff 0%, #fcfcfc 25%, #eeeeee 50%, #ececec 100%);
+  background: linear-gradient(top, #ffffff 0%, #fcfcfc 25%, #eeeeee 50%, #ececec 100%);
+  box-shadow: 2px 2px 1px #999999;
+  display: none;
+  font-weight: 100; }
+
+/* line 45, moox.notifications.sass */
+.moox_notify-area-height-calculation {
+  width: 430px;
+  border: 1px solid #fff;
+  padding: 6px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-family: Tahoma;
+  font-size: 11px;
+  font-weight: 100; }
+
+/*# sourceMappingURL=moox.notifications.css.map */

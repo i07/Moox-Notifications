@@ -1,0 +1,52 @@
+/**
+ * Javascript Notify 1.0 Sass
+ * https://github.com/i07/Moox-Notifications
+ *
+ * A javascript implementation for showing non intrusive notifications
+ *
+ * Copyright 2015; Marc Donkers (marc@i07.eu)
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+
+@mixin border-radius ( $size )
+  border-radius: $size
+  -moz-border-radius: $size
+  -webkit-border-radius: $size
+
+@mixin bg-gradient ( $color1, $color2, $color3, $color4 )
+  background-color: #fff
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, $color1), color-stop(25%, $color2), color-stop(50%, $color3), color-stop(100%, $color4))
+  background: -webkit-linear-gradient(top, $color1 0%, $color2 25%, $color3 50%, $color4 100%)
+  background: -moz-linear-gradient(top, $color1 0%, $color2 25%, $color3 50%, $color4 100%)
+  background: -o-linear-gradient(top, $color1 0%, $color2 25%, $color3 50%, $color4 100%)
+  background: linear-gradient(top, $color1 0%, $color2 25%, $color3 50%, $color4 100%)
+
+
+.moox_notify-area
+  position: absolute
+  font-family: Tahoma
+  font-size: 11px
+  width: 430px
+  left: 0
+  right: 0
+  top: 0
+  margin: auto
+  border: 1px solid #666
+  padding: 6px
+  @include border-radius(5px)
+  @include bg-gradient( #ffffff, #fcfcfc, #eeeeee, #ececec )
+  box-shadow: 2px 2px 1px #999999
+  display: none
+  font-weight: 100
+
+.moox_notify-area-height-calculation
+  width: 430px
+  border: 1px solid #fff
+  padding: 6px
+  @include border-radius(5px)
+  font-family: Tahoma
+  font-size: 11px
+  font-weight: 100
