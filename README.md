@@ -3,4 +3,4 @@ Moox-Notifications
 
 Show non-intrusive notifications ( like Growl on OSX ); made in Javascript
 
-![notification example](https://cloud.githubusercontent.com/assets/6317005/5598524/6b67737e-92b8-11e4-83c1-b171f22deb41.png)
+![moox notifications example](https://cloud.githubusercontent.com/assets/6317005/5599953/ca2199ea-92d0-11e4-9aa8-161c8d2d7d2c.png)
