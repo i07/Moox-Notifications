@@ -9,7 +9,7 @@ usage:
 include the js with <code>&lt;script&gt;</code> tag as usual.
 
 function: <code>notify ( content , timeout );</code>
-- content , will hold the text you want to show in the notification ( html allowed )
+- content , will hold the text you want to show in the notification ( basic html allowed )
 - timeout , number of milliseconds the notification should be visible.
 
 Example:<hr/>
