@@ -12,5 +12,12 @@ function: <code>notify ( content , timeout );</code>
 - content , will hold the text you want to show in the notification ( basic html allowed )
 - timeout , number of milliseconds the notification should be visible.
 
+Currently basic functionality, and only 100% usable in webkit-based browsers. Check back later for cross browser support and more options like:
+
+- sticky notifications
+- callback upon removing notifications
+- style per notification
+- etc. etc.
+
 Example:<hr/>
 ![moox notifications example](https://cloud.githubusercontent.com/assets/6317005/5599985/760fb3f4-92d1-11e4-8cc7-9e3918c41357.gif)
