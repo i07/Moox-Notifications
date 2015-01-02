@@ -15,6 +15,7 @@ function: <code>notify ( content , timeout );</code>
 Currently basic functionality, and only 100% usable in webkit-based browsers. Check back later for cross browser support and more options like:
 
 - sticky notifications
+- play audio upon showing notification
 - callback upon removing notifications
 - style per notification
 - etc. etc.
