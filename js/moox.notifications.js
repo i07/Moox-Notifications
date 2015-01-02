@@ -43,7 +43,7 @@
         //add the content
         temp.innerHTML      = content;
 
-        //append div element to body
+        //append div element to body, without adding height will always be 0
         document.body.appendChild(temp);
 
         //get the text height of the temporary div
