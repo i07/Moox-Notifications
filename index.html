@@ -2,12 +2,52 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <!-- <link rel="stylesheet" type="text/css" href="css/moox.notifications.css" /> -->
     <script src="js/moox.notifications.js"></script>
 
     <title>Moox Notifications Example Page</title>
+    <style>
+        body {
+            font-family: Tahoma;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-<button onclick="notify('2 seconds notification, with a little bit of more text to check out if the textheight property is working correctly', 2000)">Notify me!</button>
+<table>
+    <tr>
+        <td colspan="2" align="center"><strong>Moox Notifications Test</strong></td>
+    </tr>
+    <tr>
+        <td><button onclick="notify('<strong>Notify 2sec</strong><br/>2 seconds notification, with a little bit of more text to check out if the textheight property is working correctly.', 2000)">2 Second Notification</button></td>
+        <td align="right"><button onclick="notify('<strong>Notify 5sec</strong><br/>5 seconds notification, with a little bit of more text to check out if the textheight property is working correctly.', 5000)">5 Second Notification</button></td>
+    </tr>
+    <tr>
+        <td colspan="2"><textarea id="notify_text" cols="40" rows="4"><strong>Test Message</strong><br/>Another piece of text.!</textarea><br/></td>
+    </tr>
+    <tr>
+        <td align="right">
+            <select id="notify_time">
+                <option value="2000">2 Seconds</option>
+                <option value="3000">3 Seconds</option>
+                <option value="4000">4 Seconds</option>
+                <option value="5000">5 Seconds</option>
+                <option value="10000" SELECTED>10 Seconds</option>
+            </select>
+        </td>
+        <td>
+            <button onclick="notify_it()">Notify it!</button>
+        </td>
+    </tr>
+</table>
+
 </body>
 </html>
+<script>
+    function notify_it()
+    {
+        var text = document.getElementById('notify_text').value;
+        var timeout = parseInt(document.getElementById('notify_time').value);
+
+        notify(text + "<br/>time:" + (timeout/1000)+"seconds",timeout);
+    }
+</script>

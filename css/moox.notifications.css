@@ -9,12 +9,12 @@
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
  */
-/* line 28, moox.notifications.sass */
+/* line 29, moox.notifications.sass */
 .moox_notify-area {
   position: absolute;
   font-family: Tahoma;
   font-size: 11px;
-  width: 430px;
+  width: 250px;
   left: 0;
   right: 0;
   top: 0;
@@ -31,12 +31,21 @@
   background: -o-linear-gradient(top, #ffffff 0%, #fcfcfc 25%, #eeeeee 50%, #ececec 100%);
   background: linear-gradient(top, #ffffff 0%, #fcfcfc 25%, #eeeeee 50%, #ececec 100%);
   box-shadow: 2px 2px 1px #999999;
-  display: none;
-  font-weight: 100; }
+  font-weight: 100;
+  opacity: 0;
+  -webkit-animation: fadeIn 0.5s ease-in 1 forwards;
+  -webkit-transition: top 0.2s ease-in; }
 
-/* line 45, moox.notifications.sass */
+@-webkit-keyframes fadeIn {
+  to {
+    opacity: 1; } }
+/* line 53, moox.notifications.sass */
+.is-paused {
+  -webkit-animation-play-state: paused; }
+
+/* line 56, moox.notifications.sass */
 .moox_notify-area-height-calculation {
-  width: 430px;
+  width: 250px;
   border: 1px solid #fff;
   padding: 6px;
   border-radius: 5px;

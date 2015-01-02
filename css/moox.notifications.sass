@@ -10,6 +10,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+=notify_width
+  width: 250px
 
 @mixin border-radius ( $size )
   border-radius: $size
@@ -24,12 +26,11 @@
   background: -o-linear-gradient(top, $color1 0%, $color2 25%, $color3 50%, $color4 100%)
   background: linear-gradient(top, $color1 0%, $color2 25%, $color3 50%, $color4 100%)
 
-
 .moox_notify-area
   position: absolute
   font-family: Tahoma
   font-size: 11px
-  width: 430px
+  +notify_width
   left: 0
   right: 0
   top: 0
@@ -39,11 +40,21 @@
   @include border-radius(5px)
   @include bg-gradient( #ffffff, #fcfcfc, #eeeeee, #ececec )
   box-shadow: 2px 2px 1px #999999
-  display: none
   font-weight: 100
+  opacity: 0
+  -webkit-animation: fadeIn .5s ease-in 1 forwards
+  -webkit-transition: top .2s ease-in
+
+
+@-webkit-keyframes fadeIn
+  to
+    opacity: 1
+
+.is-paused
+  -webkit-animation-play-state: paused
 
 .moox_notify-area-height-calculation
-  width: 430px
+  +notify_width
   border: 1px solid #fff
   padding: 6px
   @include border-radius(5px)
