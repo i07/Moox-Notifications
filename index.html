@@ -2,7 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <script src="js/moox.notifications.js"></script>
+    <!--[if lte IE 10]><script>function notify(){ return false; }</script><![endif]-->
+    <!--[if !IE]> --><script src="js/moox.notifications.js"></script><!-- <![endif]-->
 
     <title>Moox Notifications Example Page</title>
     <style>
