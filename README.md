@@ -11,7 +11,7 @@ include the js with <code>&lt;script&gt;</code> tag as usual. ( will cause error
 or
 
 include it conditionally like:<br/>
-<code>&lt;!--[if lte IE 10]--&gt;&lt;script&gt;function notify(){ return false; }&lt;/script&gt;&lt;!--[endif]--&gt;</code><br/>
+<code>&lt;!--[if lt IE 10]--&gt;&lt;script&gt;function notify(){ return false; }&lt;/script&gt;&lt;!--[endif]--&gt;</code><br/>
 <code>&lt;!--[if gte IE 10]--&gt;&lt;script src="js/moox.notifications.js"&gt;&lt;/script&gt;&lt;!--[endif]--&gt;</code><br/>
 <code>&lt;!--[if !IE]--&gt;&lt;script src="js/moox.notifications.js"&gt;&lt;/script&gt;&lt;!--[endif]--&gt;</code>
 
