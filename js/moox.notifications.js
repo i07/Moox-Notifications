@@ -110,7 +110,12 @@
                     //actually adding the notification to the screen
                     document.body.appendChild(content);
                     //start the FadeIn animation, that it becomes visible
-                    content.classList.remove('is-paused');
+
+                    content.classList.remove('is-paused'); //not supported on IE9 or lower
+
+                    //TODO: review the issue IE has, below line is to replace classList.remove on IE9 or lower
+                    //content.className = content.className.replace(' is-paused','');
+
                 }
             });
         }

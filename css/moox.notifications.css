@@ -9,7 +9,7 @@
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
  */
-/* line 29, moox.notifications.sass */
+/* line 44, moox.notifications.sass */
 .moox_notify-area {
   position: absolute;
   font-family: Tahoma;
@@ -21,6 +21,9 @@
   margin: auto;
   border: 1px solid #666;
   padding: 6px;
+  box-shadow: 2px 2px 1px #999999;
+  font-weight: 100;
+  opacity: 0;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -30,20 +33,37 @@
   background: -moz-linear-gradient(top, #ffffff 0%, #fcfcfc 25%, #eeeeee 50%, #ececec 100%);
   background: -o-linear-gradient(top, #ffffff 0%, #fcfcfc 25%, #eeeeee 50%, #ececec 100%);
   background: linear-gradient(top, #ffffff 0%, #fcfcfc 25%, #eeeeee 50%, #ececec 100%);
-  box-shadow: 2px 2px 1px #999999;
-  font-weight: 100;
-  opacity: 0;
   -webkit-animation: fadeIn 0.5s ease-in 1 forwards;
-  -webkit-transition: top 0.2s ease-in; }
+  -moz-animation: fadeIn 0.5s ease-in 1 forwards;
+  -ms-animation: fadeIn 0.5s ease-in 1 forwards;
+  -o-animation: fadeIn 0.5s ease-in 1 forwards;
+  animation: fadeIn 0.5s ease-in 1 forwards;
+  -webkit-transition: top 0.2s ease-in;
+  -moz-transition: top 0.2s ease-in;
+  -ms-transition: top 0.2s ease-in;
+  -o-transition: top 0.2s ease-in;
+  transition: top 0.2s ease-in; }
 
 @-webkit-keyframes fadeIn {
   to {
     opacity: 0.7; } }
-/* line 53, moox.notifications.sass */
+@-moz-keyframes fadeIn {
+  to {
+    opacity: 0.7; } }
+@-ms-keyframes fadeIn {
+  to {
+    opacity: 0.7; } }
+@-o-keyframes fadeIn {
+  to {
+    opacity: 0.7; } }
+@keyframes fadeIn {
+  to {
+    opacity: 0.7; } }
+/* line 84, moox.notifications.sass */
 .is-paused {
   -webkit-animation-play-state: paused; }
 
-/* line 56, moox.notifications.sass */
+/* line 87, moox.notifications.sass */
 .moox_notify-area-height-calculation {
   width: 250px;
   border: 1px solid #fff;

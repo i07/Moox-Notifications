@@ -26,6 +26,21 @@
   background: -o-linear-gradient(top, $color1 0%, $color2 25%, $color3 50%, $color4 100%)
   background: linear-gradient(top, $color1 0%, $color2 25%, $color3 50%, $color4 100%)
 
+@mixin animation ( $params )
+  -webkit-animation: $params
+  -moz-animation: $params
+  -ms-animation: $params
+  -o-animation: $params
+  animation: $params
+
+@mixin transition ( $params )
+  -webkit-transition: $params
+  -moz-transition: $params
+  -ms-transition: $params
+  -o-transition: $params
+  transition: $params
+
+
 .moox_notify-area
   position: absolute
   font-family: Tahoma
@@ -37,16 +52,32 @@
   margin: auto
   border: 1px solid #666
   padding: 6px
-  @include border-radius(5px)
-  @include bg-gradient( #ffffff, #fcfcfc, #eeeeee, #ececec )
   box-shadow: 2px 2px 1px #999999
   font-weight: 100
   opacity: 0
-  -webkit-animation: fadeIn .5s ease-in 1 forwards
-  -webkit-transition: top .2s ease-in
+  @include border-radius(5px)
+  @include bg-gradient( #ffffff, #fcfcfc, #eeeeee, #ececec )
+  @include animation ( fadeIn .5s ease-in 1 forwards )
+  @include transition( top .2s ease-in )
 
 
 @-webkit-keyframes fadeIn
+  to
+    opacity: 0.7
+
+@-moz-keyframes fadeIn
+  to
+    opacity: 0.7
+
+@-ms-keyframes fadeIn
+  to
+    opacity: 0.7
+
+@-o-keyframes fadeIn
+  to
+    opacity: 0.7
+
+@keyframes fadeIn
   to
     opacity: 0.7
 
