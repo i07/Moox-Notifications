@@ -8,9 +8,11 @@ This will show gentle notifications in Growl like style, change the css ( or sas
 usage: 
 include the js with <code>&lt;script&gt;</code> tag as usual.
 
-function: <code>notify ( content , timeout );</code>
+function: <code>notify ( content , timeout , audio , callback );</code>
 - content , will hold the text you want to show in the notification ( basic html allowed )
 - timeout , number of milliseconds the notification should be visible.
+- audio , a boolean; to have audio notification chime, ( default: false )
+- callback , function (as string) that needs to execute once notification is removed
 
 Currently basic functionality, and only 100% usable in webkit-based browsers. Check back later for cross browser support and more options like:
 
