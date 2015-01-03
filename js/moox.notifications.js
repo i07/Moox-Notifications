@@ -24,6 +24,14 @@
     //add to the head tag of our document
     document.getElementsByTagName("head")[0].appendChild(styleref);
 
+    //add the audio tag to our document
+    var audio = document.createElement("audio"); audio.setAttribute("id", "notificationAudio");
+    var src1 = document.createElement("source"); var src2 = document.createElement("source"); var src3 = document.createElement("source");
+    src1.setAttribute("src",    "sounds/notify.ogg"); src1.setAttribute("type",   "audio/ogg");
+    src2.setAttribute("src",    "sounds/notify.mp3"); src2.setAttribute("type",   "audio/mpeg");
+    src3.setAttribute("src",    "sounds/notify.wav"); src3.setAttribute("type",   "audio/wav");
+    audio.appendChild(src1); audio.appendChild(src2); audio.appendChild(src3);
+
     //setup our variables
     var notifications = new Array();
     var notify_holder = new Array();
@@ -34,18 +42,30 @@
     //this timer will check for notifications to remove
     setInterval(clean_notify, 100);
 
-    //main entry function
-    function notify(content, timeout) {
+    window.onload = function () {
+        //add the audio tag to our body, to play audio use : document.getElementById('notificationAudio').play();
+        document.body.appendChild(audio);
+    }
 
-        if (timeout == undefined || timeout < 2000) timeout = 2000;
+    //main entry function
+    function notify(content, timeout, audio, callback) {
+
+        if (audio == undefined)
+            audio = false;
+
+        if (timeout == undefined || timeout < 2000)
+            timeout = 2000;
 
         //add notification
-        add_notification(content, timeout);
+        add_notification(content, timeout, callback);
+
+        if (audio)
+            document.getElementById('notificationAudio').play();
 
     }
 
     //create and add a notification div to our holder Array
-    function add_notification(content, timeout) {
+    function add_notification(content, timeout, callback) {
 
         //get the text height
         var textHeight = get_text_height(content);
@@ -58,6 +78,8 @@
         notifications.heightval = textHeight;
         //set our timeout value for this notification
         notifications.timeout = timeout;
+        //set callback function
+        notifications.callback = callback;
         //and fill up our div with the content
         notifications.innerHTML = content;
 
@@ -101,6 +123,11 @@
             //if the requested removal time is smaller then now()
             if (data.removeAt < Date.now()) {
 
+                //check to see if we have a callback function
+                if ( data.callback != undefined && data.callback != "" ) {
+                    //eval the callback
+                    eval(data.callback);
+                }
                 //remove the entry from the array
                 notify_holder.splice(id, 1);
                 //remove the notification from the screen

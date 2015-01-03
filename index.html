@@ -7,6 +7,7 @@
     <title>Moox Notifications Example Page</title>
     <style>
         body {
+            background-color:#e4e4e4;
             font-family: Tahoma;
             font-size: 14px;
         }
@@ -48,6 +49,11 @@
         var text = document.getElementById('notify_text').value;
         var timeout = parseInt(document.getElementById('notify_time').value);
 
-        notify(text + "<br/>time:" + (timeout/1000)+"seconds",timeout);
+        notify(text + "<br/>time:" + (timeout/1000)+"seconds",timeout, true);
+    }
+
+    function hold(message)
+    {
+        alert(message);
     }
 </script>
