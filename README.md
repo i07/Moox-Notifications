@@ -6,7 +6,13 @@ Show non-intrusive notifications ( like Growl on OSX ).
 This will show gentle notifications in Growl like style, change the css ( or sass ) file to position and style the notification panel.
 
 usage: 
-include the js with <code>&lt;script&gt;</code> tag as usual.
+include the js with <code>&lt;script&gt;</code> tag as usual. ( will cause errors in IE < 9 )
+
+or
+
+include it conditionally like:<br/>
+<code>&lt;!--[if lte IE 10]&gt;&lt;script&gt;function notify(){ return false; }&lt;/script&gt;&lt;![endif]--&gt;</code><br/>
+<code>&lt;!--[if !IE]&gt; --&gt;&lt;script src="js/moox.notifications.js"&gt;&lt;/script&gt;&lt;!-- &lt;![endif]--&gt;</code>
 
 function: <code>notify ( content , timeout , audio , callback );</code>
 - content , will hold the text you want to show in the notification ( basic html allowed )
