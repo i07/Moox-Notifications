@@ -11,8 +11,9 @@ include the js with <code>&lt;script&gt;</code> tag as usual. ( will cause error
 or
 
 include it conditionally like:<br/>
-<code>&lt;!--[if lte IE 10]&gt;&lt;script&gt;function notify(){ return false; }&lt;/script&gt;&lt;![endif]--&gt;</code><br/>
-<code>&lt;!--[if !IE]&gt; --&gt;&lt;script src="js/moox.notifications.js"&gt;&lt;/script&gt;&lt;!-- &lt;![endif]--&gt;</code>
+<code>&lt;!--[if lte IE 10]--&gt;&lt;script&gt;function notify(){ return false; }&lt;/script&gt;&lt;!--[endif]--&gt;</code><br/>
+<code>&lt;!--[if gte IE 10]--&gt;&lt;script src="js/moox.notifications.js"&gt;&lt;/script&gt;&lt;!--[endif]--&gt;</code><br/>
+<code>&lt;!--[if !IE]--&gt;&lt;script src="js/moox.notifications.js"&gt;&lt;/script&gt;&lt;!--[endif]--&gt;</code>
 
 this way, it will silently process the function calls in IE version 9 or below.
 
