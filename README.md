@@ -14,7 +14,7 @@ function: <code>notify ( content , timeout , audio , callback );</code>
 - audio , a boolean; to have audio notification chime, ( default: false )
 - callback , function (as string) that needs to execute once notification is removed
 
-Currently basic functionality, and only 100% usable in webkit-based browsers. Check back later for cross browser support and more options like:
+Currently basic functionality. ~~Check back later for cross browser support~~ now supports ( FireFox, Chrome, Opera and IE10 or higher ) and more options like:
 
 - sticky notifications
 - ~~play audio upon showing notification~~
