@@ -14,6 +14,10 @@ include it conditionally like:<br/>
 <code>&lt;!--[if lte IE 10]&gt;&lt;script&gt;function notify(){ return false; }&lt;/script&gt;&lt;![endif]--&gt;</code><br/>
 <code>&lt;!--[if !IE]&gt; --&gt;&lt;script src="js/moox.notifications.js"&gt;&lt;/script&gt;&lt;!-- &lt;![endif]--&gt;</code>
 
+this way, it will silently process the function calls in IE version 9 or below.
+
+--
+
 function: <code>notify ( content , timeout , audio , callback );</code>
 - content , will hold the text you want to show in the notification ( basic html allowed )
 - timeout , number of milliseconds the notification should be visible.
