@@ -25,6 +25,8 @@ function: <code>notify ( content , timeout , audio , callback );</code>
 - audio , a boolean; to have audio notification chime, ( default: false )
 - callback , function (as string) that needs to execute once notification is removed
 
+by adding <code>&lt;span id='mn_countdown'&gt;&lt;/span&gt;</code> to the content text; it will insert the countdown in seconds into that element, showing the number of seconds until the notification is being removed.
+
 Currently basic functionality. ~~Check back later for cross browser support~~ now supports ( FireFox, Chrome, Opera and IE10 or higher ) and more options like:
 
 - sticky notifications
