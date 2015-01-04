@@ -103,6 +103,8 @@
                     notify_holder[id].displayed = true;
                     //set the time on which this notification can be removed
                     notify_holder[id].removeAt = (Date.now()) + data.timeout;
+                    //a function to cancel a set callback
+                    notify_holder[id].cancelCallback = function() { notify_holder[id].callback = null };
                     //set the top position of this notification
                     content.style.top = notify_pos + "px";
                     //increase our position for the next notification
