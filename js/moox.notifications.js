@@ -10,13 +10,19 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-( function ($) {
+/*jslint browser:true, plusplus: true, evil: true, todo: true */
+/*global define: true*/
+
+(function ($) {
 
     //let's go strict on this one ;)
     'use strict';
 
+    var
+        audio, src1, src2, src3, styleref, notifications, notify_holder, notify_pos;
+
     //we load up our style sheet first
-    var styleref = document.createElement("link");
+    styleref = document.createElement("link");
     styleref.setAttribute("rel", "stylesheet");
     styleref.setAttribute("type", "text/css");
     styleref.setAttribute("href", "css/moox.notifications.css");
@@ -25,43 +31,62 @@
     document.getElementsByTagName("head")[0].appendChild(styleref);
 
     //add the audio tag to our document
-    var audio = document.createElement("audio"); audio.setAttribute("id", "notificationAudio");
-    var src1 = document.createElement("source"); var src2 = document.createElement("source"); var src3 = document.createElement("source");
-    src1.setAttribute("src",    "sounds/notify.ogg"); src1.setAttribute("type",   "audio/ogg");
-    src2.setAttribute("src",    "sounds/notify.mp3"); src2.setAttribute("type",   "audio/mpeg");
-    src3.setAttribute("src",    "sounds/notify.wav"); src3.setAttribute("type",   "audio/wav");
-    audio.appendChild(src1); audio.appendChild(src2); audio.appendChild(src3);
+    audio = document.createElement("audio");
+    audio.setAttribute("id", "notificationAudio");
+    src1 = document.createElement("source");
+    src2 = document.createElement("source");
+    src3 = document.createElement("source");
+    src1.setAttribute("src", "sounds/notify.ogg");
+    src1.setAttribute("type", "audio/ogg");
+    src2.setAttribute("src", "sounds/notify.mp3");
+    src2.setAttribute("type", "audio/mpeg");
+    src3.setAttribute("src", "sounds/notify.wav");
+    src3.setAttribute("type", "audio/wav");
+    audio.appendChild(src1);
+    audio.appendChild(src2);
+    audio.appendChild(src3);
 
     //setup our variables
-    var notifications = new Array();
-    var notify_holder = new Array();
-    var notify_pos = 0;
+    notifications = [];
+    notify_holder = [];
+    notify_pos = 0;
 
-    //this timer will check for notifications
-    setInterval(check_notify, 100);
-    //this timer will check for notifications to remove
-    setInterval(clean_notify, 100);
+    //get the text height of the content, make sure the styles on the temp div are equal to the notification div.
+    function get_text_height(content) {
+        //create new div
+        var temp, th;
 
-    window.onload = function () {
-        //add the audio tag to our body, to play audio use : document.getElementById('notificationAudio').play();
-        document.body.appendChild(audio);
+        temp = document.createElement("div");
+        //style class name to match notification style, important for proper height value; see css file
+        temp.className = "moox_notify-area-height-calculation";
+        //add the content
+        temp.innerHTML = content;
+
+        //append div element to body, without adding height will always be 0
+        document.body.appendChild(temp);
+
+        //get the text height of the temporary div
+        th = temp.offsetHeight;
+
+        //remove the temp div from the body
+        document.body.removeChild(temp);
+
+        //return the text height
+        return th;
     }
 
-    //main entry function
-    function notify(content, timeout, audio, callback) {
+    function iterate_objects(obj, tt) {
 
-        if (audio == undefined)
-            audio = false;
+        var child, i;
+        child = obj.children;
 
-        if (timeout == undefined || timeout < 2000)
-            timeout = 2000;
+        for (i = 0; i < child.length; i++) {
+            if (child[i].id === "mn_countdown") {
+                child[i].innerHTML = Math.ceil((tt - Date.now()) / 1000);
+            }
 
-        //add notification
-        add_notification(content, timeout, callback);
-
-        if (audio)
-            document.getElementById('notificationAudio').play();
-
+            iterate_objects(child[i], tt);
+        }
     }
 
     //create and add a notification div to our holder Array
@@ -104,7 +129,9 @@
                     //set the time on which this notification can be removed
                     notify_holder[id].removeAt = (Date.now()) + data.timeout;
                     //a function to cancel a set callback
-                    notify_holder[id].cancelCallback = function() { notify_holder[id].callback = null };
+                    notify_holder[id].cancelCallback = function () {
+                        notify_holder[id].callback = null;
+                    };
                     //set the top position of this notification
                     content.style.top = notify_pos + "px";
                     //increase our position for the next notification
@@ -126,19 +153,23 @@
 
         //get all document children
         //TODO: perhaps handle this different, since it is getting all elements on the page
-        var children = document.body.children;
+        var children, i, removeTime;
+
+        children = document.body.children;
 
         //lets look at them one by one
-        for (var i = 0; i < children.length; i++) {
+        for (i = 0; i < children.length; i++) {
             //check if this is a notification element
-            if (children[i].className == "moox_notify-area")
-            {
-                var removeTime = children[i].removeAt;
+            if (children[i].className === "moox_notify-area") {
 
-                if ( removeTime != undefined && removeTime > 0 )
-                    iterate_objects_for_countdown(children[i], removeTime);
+                removeTime = children[i].removeAt;
+
+                if (removeTime !== undefined && removeTime > 0) {
+                    iterate_objects(children[i], removeTime);
+                }
             }
         }
+
     }
 
     //once the time has expired this function will remove the notification
@@ -149,7 +180,7 @@
             if (data.removeAt < Date.now()) {
 
                 //check to see if we have a callback function
-                if ( data.callback != undefined && data.callback != "" ) {
+                if (data.callback !== undefined && data.callback !== "") {
                     //eval the callback
                     eval(data.callback);
                 }
@@ -162,16 +193,19 @@
 
                 //get all document children
                 //TODO: perhaps handle this different, since it is getting all elements on the page
-                var children = document.body.children;
+                var children, i, tmtop, nwtop;
+                children = document.body.children;
 
                 //lets look at them one by one
-                for (var i = 0; i < children.length; i++) {
+                for (i = 0; i < children.length; i++) {
                     //check if this is a notification element
-                    if (children[i].className == "moox_notify-area") {
+                    if (children[i].className === "moox_notify-area") {
                         //start to reposition the remaining notifications
-                        var tmtop = children[i].style.top.replace("px", "");
-                        var nwtop = parseInt(tmtop) - data.heightval;
-                        if (nwtop < 0) nwtop = 0;
+                        tmtop = children[i].style.top.replace("px", "");
+                        nwtop = parseInt(tmtop, 10) - data.heightval;
+                        if (nwtop < 0) {
+                            nwtop = 0;
+                        }
                         children[i].style.top = nwtop + "px";
                     }
                 }
@@ -181,40 +215,26 @@
         });
     }
 
-    function iterate_objects_for_countdown ( obj , tt )
-    {
-        var child = obj.children;
+    //main entry function
+    function notify(content, timeout, audio, callback) {
 
-        for ( var i=0 ; i<child.length; i++ )
-        {
-            if ( child[i].id == "mn_countdown" )
-                child[i].innerHTML = Math.ceil((tt - Date.now()) / 1000);
-
-            iterate_objects_for_countdown(child[i],tt);
+        if (audio === undefined) {
+            audio = false;
         }
+
+        if (timeout === undefined || timeout < 2000) {
+            timeout = 2000;
+        }
+
+        //add notification
+        add_notification(content, parseInt(timeout, 10), callback);
+
+        if (audio) {
+            document.getElementById('notificationAudio').play();
+        }
+
     }
 
-    //get the text height of the content, make sure the styles on the temp div are equal to the notification div.
-    function get_text_height(content) {
-        //create new div
-        var temp = document.createElement("div");
-        //style class name to match notification style, important for proper height value; see css file
-        temp.className = "moox_notify-area-height-calculation";
-        //add the content
-        temp.innerHTML = content;
-
-        //append div element to body, without adding height will always be 0
-        document.body.appendChild(temp);
-
-        //get the text height of the temporary div
-        var th = temp.offsetHeight;
-
-        //remove the temp div from the body
-        document.body.removeChild(temp);
-
-        //return the text height
-        return th;
-    }
 
     //handle the module function name for inspection and execution
     if (typeof define === 'function' && define.amd) {
@@ -225,4 +245,14 @@
         $.notify = notify;
     }
 
-}(this) );
+    window.onload = function () {
+        //add the audio tag to our body, to play audio use : document.getElementById('notificationAudio').play();
+        document.body.appendChild(audio);
+
+        //this timer will check for notifications
+        setInterval(check_notify, 100);
+        //this timer will check for notifications to remove
+        setInterval(clean_notify, 100);
+    };
+
+}(this));
