@@ -23,7 +23,8 @@ function: <code>notify ( content , timeout , audio , callback );</code>
 - content , will hold the text you want to show in the notification ( basic html allowed )
 - timeout , number of milliseconds the notification should be visible.
 - audio , a boolean; to have audio notification chime, ( default: false )
-- callback , function (as string) that needs to execute once notification is removed
+- callback , function (as string) that needs to execute once notification is removed;
+             a callback can be cancelled by adding <code>&lt;button onclick='event.target.offsetParent.cancelCallback();'&gt;Cancel callback&lt;/button&gt;</code> to set content
 
 by adding <code>&lt;span id='mn_countdown'&gt;&lt;/span&gt;</code> to the content text; it will insert the countdown in seconds into that element, showing the number of seconds until the notification is being removed.<br/>
 ![Countdown example](https://cloud.githubusercontent.com/assets/6317005/5605724/9ff29222-940c-11e4-9a4e-7396b192fcff.png)
