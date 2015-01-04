@@ -29,6 +29,9 @@ function: <code>notify ( content , timeout , audio , callback );</code>
 by adding <code>&lt;span id='mn_countdown'&gt;&lt;/span&gt;</code> to the content text; it will insert the countdown in seconds into that element, showing the number of seconds until the notification is being removed.<br/>
 ![Countdown example](https://cloud.githubusercontent.com/assets/6317005/5605724/9ff29222-940c-11e4-9a4e-7396b192fcff.png)
 
+Example content:
+<code>&lt;div&gt;This notification will close in &lt;span id='mn_countdown'&gt;&lt;/span&gt; Seconds&lt;/div&gt;</code>
+
 Currently basic functionality. ~~Check back later for cross browser support~~ now supports ( FireFox, Chrome, Opera and IE10 or higher ) and more options like:
 
 - sticky notifications
