@@ -131,15 +131,12 @@
         //lets look at them one by one
         for (var i = 0; i < children.length; i++) {
             //check if this is a notification element
-            if (children[i].className == "moox_notify-area") {
+            if (children[i].className == "moox_notify-area")
+            {
+                var removeTime = children[i].removeAt;
 
-                var siblings = children[i].children;
-
-                for ( var j=0; j<siblings.length; j++) {
-                    if (siblings[j].id == "mn_countdown") {
-                        siblings[j].innerHTML = Math.ceil((children[i].removeAt-Date.now())/1000);
-                    }
-                }
+                if ( removeTime != undefined && removeTime > 0 )
+                    iterate_objects_for_countdown(children[i], removeTime);
             }
         }
     }
@@ -182,6 +179,19 @@
                 return false;
             }
         });
+    }
+
+    function iterate_objects_for_countdown ( obj , tt )
+    {
+        var child = obj.children;
+
+        for ( var i=0 ; i<child.length; i++ )
+        {
+            if ( child[i].id == "mn_countdown" )
+                child[i].innerHTML = Math.ceil((tt - Date.now()) / 1000);
+
+            iterate_objects_for_countdown(child[i],tt);
+        }
     }
 
     //get the text height of the content, make sure the styles on the temp div are equal to the notification div.
