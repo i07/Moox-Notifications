@@ -119,6 +119,27 @@
                 }
             });
         }
+
+        //check to see if any of the notifications have a countdown span in the content
+
+        //get all document children
+        //TODO: perhaps handle this different, since it is getting all elements on the page
+        var children = document.body.children;
+
+        //lets look at them one by one
+        for (var i = 0; i < children.length; i++) {
+            //check if this is a notification element
+            if (children[i].className == "moox_notify-area") {
+
+                var siblings = children[i].children;
+
+                for ( var j=0; j<siblings.length; j++) {
+                    if (siblings[j].id == "mn_countdown") {
+                        siblings[j].innerHTML = Math.ceil((children[i].removeAt-Date.now())/1000);
+                    }
+                }
+            }
+        }
     }
 
     //once the time has expired this function will remove the notification
